@@ -39,10 +39,11 @@ class Quiz():
                     self.score+=1
                 self.l.append([i[1],self.a])
         if self.name in self.student_wise_responses:
-            if (self.t,self.score,self.l) not in self.student_wise_responses[self.name]:
-                self.student_wise_responses[self.name].append((self.t,self.score,self.l))
-            else:
+            if (self.t,self.score,self.l) in self.student_wise_responses[self.name]:
                 print("only one attempt allowed")
+            else:
+                self.student_wise_responses[self.name].append((self.t,self.score,self.l))
+                
         else:
             self.student_wise_responses[self.name]=[(self.t,self.score,self.l)]
         print("Name: {}".format(self.name))
@@ -63,6 +64,7 @@ class Quiz():
                 print("B: "+ i[3])
                 print("C: "+ i[4])
                 print("D: "+ i[5])
+                print("correct ans:"+i[6])
     
     def display(self,topic):
         self.top=topic
@@ -89,14 +91,14 @@ while x!=0:
         if info_temp[1]==stu_pword:
             quiz_name=input("Enter quiz name: ")
             if quiz_name in q.questions:
-                if info_temp[0] not in q.student_wise_responses:
-                    if input("Are you ready to take the quiz(Y for Yes any other response will mean No): ")=="Y":
-                        q.take_quiz(info_temp[0],quiz_name)
-                        print("Here is your the answer key. Please review your answers")
-                        q.answer_key(info_temp[0],quiz_name)
-                    else:
-                        print("Are you sure?, If Yes then Exit the system by inputing 0")
-                        x=int(input())
+                if input("Are you ready to take the quiz(Y for Yes any other response will mean No): ")=="Y":
+                    q.take_quiz(info_temp[0],quiz_name)
+                    print("Here is your the answer key. Please review your answers")
+                    q.answer_key(info_temp[0],quiz_name)
+                else:
+                    print("Are you sure?, If Yes then Exit the system by inputing 0")
+                    x=int(input())
+                                   
             else:
                 print("no such quiz exists")
     elif status=="T":
