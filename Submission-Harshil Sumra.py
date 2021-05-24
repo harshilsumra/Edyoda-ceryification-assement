@@ -19,21 +19,7 @@ class Quiz():
                     self.y=0
             else:
                 self.questions[self.topic]=[[self.difficultylevel,self.question,self.oa,self.ob,self.oc,self.od,self.correct_option]]
-    def remove_ques(self):
-        self.topic=input("Input quiz topic")
-        self.difficultylevel=input("easy/medium/hard: ")
-        self.y=1
-        self.question=input("Type your question: ")
-        self.oa=input("option A: ")
-        self.ob=input("option B: ")
-        self.oc=input("option C: ")
-        self.od=input("option D: ")
-        self.correct_option=input("A/B/C/D: ")
-        while self.y!=0:
-            if [self.difficultylevel,self.question,self.oa,self.ob,self.oc,self.od,self.correct_option] in self.questions[self.topic]:
-                self.questions[self.topic].remove([self.difficultylevel,self.question,self.oa,self.ob,self.oc,self.od,self.correct_option])
-            else:
-                y=0
+    
     def take_quiz(self,s_name,topic):
         self.t=topic
         self.name=s_name
