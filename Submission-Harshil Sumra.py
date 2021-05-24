@@ -2,15 +2,15 @@ class Quiz():
     questions={}
     student_wise_responses={}
     def add_ques(self):
-        self.topic=input("Input Quiz name: ")
-        self.difficultylevel=input("easy/medium/hard: ")
+        self.topic=input("Input Quiz name:")
+        self.difficultylevel=input("easy/medium/hard:")
         self.y=1
-        self.question=input("Input Question: ")
-        self.oa=input("option A: ")
-        self.ob=input("option B: ")
-        self.oc=input("option C: ")
-        self.od=input("option D: ")
-        self.correct_option=input("A/B/C/D: ")
+        self.question=input("Input Question:")
+        self.oa=input("option A:")
+        self.ob=input("option B:")
+        self.oc=input("option C:")
+        self.od=input("option D:")
+        self.correct_option=input("A/B/C/D:")
         while self.y!=0:
             if self.topic in self.questions:
                 if [self.difficultylevel,self.question,self.oa,self.ob,self.oc,self.od,self.correct_option] not in self.questions[self.topic]:
@@ -28,18 +28,21 @@ class Quiz():
         self.l=[]
         if self.t in self.questions:
             for i in self.questions[self.t]:
-                print("Difficulty= "+i[0])
+                print("Difficulty:"+i[0])
                 print(i[1])
-                print("A: "+ i[2])
-                print("B: "+ i[3])
-                print("C: "+ i[4])
-                print("D: "+ i[5])
-                self.a=input("choose the correct answer[A/B/C/D]: ")
-                if self.a==[i][-1]:
+                print("A:"+ i[2])
+                print("B:"+ i[3])
+                print("C:"+ i[4])
+                print("D:"+ i[5])
+                self.a=input("choose the correct answer[A/B/C/D]:")
+                if self.a==i[-1]:
                     self.score+=1
                 self.l.append([i[1],self.a])
         if self.name in self.student_wise_responses:
-            self.student_wise_responses[self.name].append((self.t,self.score,self.l))
+            if (self.t,self.score,self.l) not in self.student_wise_responses[self.name]:
+                self.student_wise_responses[self.name].append((self.t,self.score,self.l))
+            else:
+                print("only one attempt allowed")
         else:
             self.student_wise_responses[self.name]=[(self.t,self.score,self.l)]
         print("Name: {}".format(self.name))
@@ -78,7 +81,7 @@ x=10
 q=Quiz()
 while x!=0:
     for i in q.student_wise_responses:
-        print("student name: "i,"topic and score: "q.student_wise_responses[i][:2])
+        print("student name: ",i,"topic and score: ",q.student_wise_responses[i][:][:2])
     print("Are you a student or a teacher: S/T [any other key will help you exit]")
     status=input()
     if status=="S":
