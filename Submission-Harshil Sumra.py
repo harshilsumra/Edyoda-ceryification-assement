@@ -64,6 +64,7 @@ class Quiz():
         self.top=quiz_topic
         for i in self.student_wise_responses[self.name]:
             if i[0]==self.top:
+                print("structure is (topic,score,responses)")
                 print(i)
         if self.top in self.questions:
             for i in self.questions[self.top]:
@@ -84,13 +85,14 @@ class Quiz():
                 print("B: "+ i[3])
                 print("C: "+ i[4])
                 print("D: "+ i[5])
-
+                
 t_pword="abcd"
 stu_pword="xyz"
 x=10
 q=Quiz()
 while x!=0:
-    print(q.student_wise_responses)
+    for i in q.student_wise_responses:
+        print("student name: "i,"topic and score: "q.student_wise_responses[i][:2])
     print("Are you a student or a teacher: S/T [any other key will help you exit]")
     status=input()
     if status=="S":
